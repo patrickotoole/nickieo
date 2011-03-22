@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  min_price: 
+  max_price: 
+  min_sqft: 
+  max_sqft: 
+  min_bedrooms: 
+  max_bedrooms: 
+  min_bathrooms: 
+  max_bathroom: 
+  property_type: MyString
+
+two:
+  min_price: 
+  max_price: 
+  min_sqft: 
+  max_sqft: 
+  min_bedrooms: 
+  max_bedrooms: 
+  min_bathrooms: 
+  max_bathroom: 
+  property_type: MyString

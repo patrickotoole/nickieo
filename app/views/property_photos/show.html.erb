@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Property:</b>
+  <%= @property_photo.property_id %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @property_photo.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_property_photo_path(@property_photo) %> |
+<%= link_to 'Back', property_photos_path %>

@@ -1,0 +1,72 @@
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+<%= javascript_include_tag "jquery.gomap.js"%>
+
+<script>
+  $(document).ready(function() {
+    $(".property_info_map").goMap({
+		latitude: <%= @property.lat %>,
+		longitude: <%= @property.lng %>,
+		markers: [{  
+		            latitude: <%= @property.lat %>, 
+		            longitude: <%= @property.lng %>, 
+					id: 'property',
+					draggable: true,
+		            title: '<%= @property.address %>' 
+		        }]
+	});
+
+	$.goMap.createListener({type:'marker', marker:'property'}, 'dragend', function() { 
+		$("#property_lat").attr("value",this.position.Ba)
+		$("#property_lng").attr("value",this.position.Da)
+	});
+});
+</script>
+
+  <div class="content_narrow property_info_content_block content_radius_8 content_border" style="clear:right;">
+	<div id="map" class="property_info_map"></div>
+  </div>
+
+<%= form_for(@property) do |f| %>
+  <% if @property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+      <% @property.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :lat %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :lng %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </div>
+  <div class="field">
+    <%= f.label :zipcode %><br />
+    <%= f.text_field :zipcode %>
+  </div>
+  <div class="field">
+    <%= f.label :mls_number %><br />
+    <%= f.text_field :mls_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

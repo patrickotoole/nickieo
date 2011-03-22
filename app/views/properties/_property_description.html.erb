@@ -1,0 +1,15 @@
+This is a <%= property.sqft %> square foot, 
+<%= property.occupancy_type %> <%= property.property_type %> 
+located in <%= property.city %>, <%= property.state %>.
+
+It has <%= property.bedrooms.to_i %> bedroom<%= (property.bedrooms.to_i != 1) ? "s" : "" %>,
+<%= property.bathrooms.to_i %> full bathroom<%= (property.bathrooms.to_i != 1) ? "s" : "" %>,
+<% if ((property.bathrooms.to_f - property.bathrooms.to_i)*10 > 0) %>
+	<%= ((property.bathrooms.to_f - property.bathrooms.to_i)*10).to_i %> half bathroom<%= (((property.bathrooms.to_f - property.bathrooms.to_i)*10).to_i != 1) ? "s" : "" %>,
+<% end %>
+
+<% if property.property_type == 'house' %>
+	and is situated on <%= property.lot %> acres of land.
+<% elsif property.property_type == 'condo' || 'apartment' || '' %>
+	and is on the <%= property.floor.to_i == 0 ? "ground": property.floor.to_i.ordinalize %> floor.
+<% end %>

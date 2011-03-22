@@ -1,0 +1,59 @@
+<% title "My Properties"%>
+
+<% content_for(:top_content_header) do %>
+	<div class="top_content_header_background top_fifteen_radius"></div>
+<!--
+	<div style="height:100px">photo spread partial from featured listings. make this smaller?</div>
+-->
+<% end %>
+
+<% content_for(:featured) do %>
+	<%= render :partial => 'properties/featured_property', :locals => {:featured_properties => @featured_properties}%>
+<% end %>
+
+
+<h2>Active Listings</h2>
+<div style="width:695px;display:inline-block;margin-right:10px">
+	<%= render :partial => 'property', :collection => @properties %>
+</div>
+<div class="content_block_border eight_radius padded_block" style="height:200px;width:159px;display:inline-block;vertical-align:top">
+	Recently Viewed:
+	<!--
+	<div class="property_summary_block_heading">
+		<span class="h3"></span>
+	</div>
+	-->
+</div>
+<% if @admin %>
+<table>
+  <tr>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zipcode</th>
+    <th></th>
+    <th></th>
+    <th></th>
+	<th>Images</th>
+  </tr>
+
+<% @properties.each do |property| %>
+  <tr>
+    <td><%= property.address %></td>
+    <td><%= property.city %></td>
+    <td><%= property.state %></td>
+    <td><%= property.zipcode %></td>
+    <td><%= link_to 'Show', property %></td>
+    <td><%= link_to 'Edit', edit_property_path(property) %></td>
+    <td><%= link_to 'Destroy', property, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% property.property_photos.each do |photo|%>
+		<td><%= link_to photo.url, [photo.property, photo] %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Property', new_property_path %>
+<% end %>

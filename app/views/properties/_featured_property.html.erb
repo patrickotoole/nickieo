@@ -1,0 +1,54 @@
+<% if featured_properties %>
+
+<div class="featured_content">
+	<h2>Featured Properties</h2>
+	<div class="feature_block">
+
+<% featured_properties.each_with_index do |property,index| %>
+	<div class="inner_content_block" style="display:<%= index == 0 ? "block" : "none"%>">
+		<div class="feature_block_heading" style="margin-top:0px">
+			<span></span><%= property.address %><span></span>
+			<div class="h3" ><%= property.city %>, <%= property.state %>
+			<span></span><%= "%05d" % property.zipcode %></div>
+			<div class="block_heading" style="float:right;margin-right:10px"><%= number_to_currency(property.price, :precision => 0) %></div>
+		</div>
+		
+		<% property.property_photos.where(:order => 0).each do |photo| %>
+			<div class="photo_wrapper">
+				<%= link_to(image_tag(photo.url_url.to_s, :height => 250, :class => "five_radius"), [photo.property, photo]) %>
+				<div class="photo_overlay_top" style="top:205px">
+					<div class="photo_overlay_left"><%= property.address %></div>
+					<div class="photo_overlay_right"><%= number_to_currency(property.price, :precision => 0) %></div>
+				</div>
+				<div class="photo_overlay_top" style="top:228px">
+					<div class="photo_overlay_left">
+						<span></span><%= property.city %>, <%= property.state %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+		
+		<% property.property_photos.each do |photo|%>
+			<% if photo.order <= 3 && photo.order > 0 %>
+				<div class="photo_wrapper featured_thumb_margin" >
+					<%= link_to(image_tag(photo.url_url(:thumb).to_s, :width => 135, :class => "five_radius"), [photo.property, photo]) %>
+					<div class="photo_overlay_top" style="top:5px">
+						<div class="photo_overlay_left"><%= photo.caption %></div>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+		
+		<div class="feature_block_info feature_block_description content_radius">
+			<h3><%= property.headline.to_s %></h3>
+			<%= property.description %>
+	    	<%= link_to 'Learn More', property %>
+		</div>
+    	
+
+
+	</div>
+  <% end %>
+	</div>
+</div>
+<% end %>

@@ -1,0 +1,2 @@
+module PropertyPhotosHelper
+end

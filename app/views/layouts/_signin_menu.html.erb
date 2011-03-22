@@ -1,0 +1,16 @@
+<div class="sign_in_toolbar">
+	<div class="sign_in_object">
+	<% if user_signed_in? %>  
+	  Signed in as <%= current_user.email %>. Not you?  
+	  <%= link_to "Sign out", destroy_user_session_path %>
+	</div>
+	<% else %>  
+	  <%= link_to "Sign up", new_user_registration_path %> or  
+	  <%= link_to "Sign in", new_user_session_path %> 
+	</div>
+		<a href="/auth/twitter" class="auth_provider" class="sign_in_object"><%= image_tag "twitter_32.png", :size => "26x26", :alt => "Twitter" %></a>
+		<a href="/auth/facebook"class="auth_provider" class="sign_in_object"><%= image_tag "facebook_32.png", :size => "26x26", :alt => "Facebook" %></a>
+		<a href="/auth/google" 	class="auth_provider" class="sign_in_object"><%= image_tag "google_32.png", :size => "26x26", :alt => "Google" %></a>
+		<a href="/auth/yahoo" 	class="auth_provider" class="sign_in_object"><%= image_tag "yahoo_32.png", :size => "26x26", :alt => "OpenID" %></a>
+	<% end %>
+</div>

@@ -1,0 +1,46 @@
+<% title "Welcome" %>
+<% content_for(:top_content_header) do %>
+  <div class="top_content_header_background top_radius">
+  </div>
+<% end %>
+
+<% content_for(:top_content) do %>
+  <% if (user_signed_in?) %>
+<!--Welcome, <%= @current_user%>!-->	
+  <% else %>
+	
+	<h2>Welcome</h2>
+	<div class="content_block">
+	<div class="sign_up_block" style="float:right">
+	<h2>Sign in</h2>
+	<h2>Sign up</h2>
+	or 
+	<h3>Log in through</h3>
+	<div style="display:block">
+		<a href="/auth/twitter" class="auth_provider"><%= image_tag "twitter_64.png", :size => "48x48", :alt => "Twitter" %></a>  
+		<a href="/auth/facebook"class="auth_provider"><%= image_tag "facebook_64.png", :size => "48x48", :alt => "Facebook" %></a>  
+		<a href="/auth/google" 	class="auth_provider"><%= image_tag "google_64.png", :size => "48x48", :alt => "Google" %></a>  
+		<a href="/auth/yahoo" 	class="auth_provider"><%= image_tag "yahoo_64.png", :size => "48x48", :alt => "OpenID" %></a>
+	</div>
+	</div>
+	<h3>A Message From Nickie O'Toole</h3>
+	<%= image_tag "nickie.jpg", :size => "100x140", :alt => "Nickie O'Toole", :style=>"float:left;margin-left:15px;margin-right:15px" %>
+
+	My name is Nickie O'Toole, a real estate agent and associate broker for Action Realty - Bob Pizzi. This site is designed as a tool for you, my potential and current clients. <p/>
+	This site is also a resource for any person looking to research the real estate market in Connecticut. I encourage you to share this site with friends and colleagues who are also interested in the Connecticut Real Estate market.<p/>
+	This site is meant to help facilitate three major facets of buying and selling a home:
+	<ul>
+		<li><span class="emph">Independent Research -- 	</span>You can view my listings, search the statewide MLS from this site and save properties of interest for viewing later.</li>
+		<li><span class="emph">Collaborative Research -- </span>You can easily share properties (and comments about those properties) that interest you with me and I can recommend additional properties for you to consider based on your preferences</li>
+		<li><span class="emph">Communication -- 		</span>This category is the most broad. To keep it short: One-on-one communication between myself and clients,  advertising to a broader audience, and leveraging social networks to help advertise property.</li>
+	</ul>
+	With these goals, I encourage you to sign up and begin exploring the Connecticut real estate market.
+	</div>
+  <% end %>	
+<% end %>
+<% content_for(:featured) do %>
+	<%= render :partial => 'properties/featured_property', :locals => {:featured_properties => @featured_properties}%>
+<% end %>
+
+<h2>Find a property</h2>
+Looking for a property in Southern Connecticut? Let your search begin here! This feature is coming soon...

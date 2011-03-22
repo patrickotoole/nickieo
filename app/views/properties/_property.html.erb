@@ -1,0 +1,50 @@
+<% if property.featured == true %>
+
+<% else %>
+
+	<% if property_counter % 2 == 0 %>
+		<% outer_color = " info_block_color " %>
+		<% inner_color = " " %>
+		<% photo_wrapper_margin = "margin-right:15px;" %>
+		<% photo_wrapper_float = "" %>
+	<% else %>
+		<% inner_color = " info_block_color " %>
+		<% photo_wrapper_margin = "margin-left:15px;" %>
+		<% photo_wrapper_float = "float:right;" %>
+	<% end %>
+
+
+	<% if property_counter %>
+	<div class="property_display_block <%= outer_color %>">
+		<div class="property_summary_block">
+			
+			<div class="property_summary_block_heading">
+				<% link_to(property,:style=>"text-decoration:none") do %>
+				<span class="h3" style="float:left;"><%= property.address %></span>
+				<span class="h3" style="float:right;"><%= number_to_currency(property.price, :precision => 0) %></span>
+				<% end %>
+			</div>
+
+			<div class="property_summary_block_text <%= inner_color %>">
+				<%= render :partial => 'property_description', :locals => {:property => property} %>
+				
+				<%= link_to 'Learn More', property %>
+			</div>
+		</div>
+		
+		<div class="photo_wrapper" style="<%= photo_wrapper_margin + photo_wrapper_float %>">
+			<%= property.property_photos.where(:order => 0).first ? image_tag(property.property_photos.where(:order => 0).first.url_url(:featured), :class => "five_radius") : nil %>
+		</div>
+		<% property.property_photos.each_with_index do |photo,index| %>
+			<% if photo.order > 0 && photo.order < 3 %>
+				<div class="photo_wrapper" style="<%= photo_wrapper_margin + photo_wrapper_float %>margin-top:10px;"><%= image_tag(photo.url_url(:thumb), :class => "five_radius", :height => 75) %></div>
+			<% elsif photo.order > 0 && photo.order < 4 %>
+				<div class="photo_wrapper" style="margin-top:10px;"><%= image_tag(photo.url_url(:thumb), :class => "five_radius", :height => 75) %></div>
+			<% end %>
+		<% end %>
+	<% end %>
+
+
+	</div>
+<% end %>
+

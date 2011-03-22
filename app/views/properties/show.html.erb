@@ -1,0 +1,127 @@
+<% content_for(:top_content_header) do %>
+	<div class="top_content_header_background top_fifteen_radius"></div>
+<!--
+	<div style="height:100px">photo spread partial from featured listings. make this smaller?</div>
+-->
+<% end %>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+<%= javascript_include_tag "jquery.gomap.js"%>
+<script>
+  $(document).ready(function() {
+    $(".property_info_map").goMap({
+		latitude: <%= @property.lat %>,
+		longitude: <%= @property.lng %>,
+		markers: [{  
+		            latitude: <%= @property.lat %>, 
+		            longitude: <%= @property.lng %>, 
+					id: 'property',
+					draggable: true,
+		            title: '<%= @property.address %>' 
+		        }]
+	});
+});
+</script>
+
+<div class="property_head_block eight_radius content_border">
+	<div class="feature_block_heading">
+		<span></span><%= @property.address %><span></span>
+		<div class="feature_block_subheading"><%= @property.city %>, <%= @property.state %></div>
+		<span></span>
+		<div class="feature_block_subheading"><%= "%05d" % @property.zipcode %></div>
+		<div class="block_heading" style="float:right;margin-right:10px"><%= number_to_currency(@property.price, :precision => 0) %></div>
+	</div>
+</div>
+<div class="content_block property_full_block">
+	
+	<div class="content_narrow property_content_block right_content_block">
+		<div id="map" class="property_info_map"></div>
+	</div>
+	
+	<div class="content_narrow property_content_block right_content_block">
+		<h4>Property Details</h4>
+		<table>
+			<th><span style="font-weight:bold;">Address</span></th>
+			<tr>
+				<td>Street:</td><td><%= @property.address %></td>
+			</tr>
+			<tr>
+				<td>City:</td><td><%= @property.city %></td>
+			</tr>
+			<tr>
+				<td>State:</td><td><%= @property.state %></td>
+			</tr>
+			<tr>
+				<td>State:</td><td><%= "%05d" % @property.zipcode %></td>
+			</tr>
+			<th><span style="font-weight:bold;">Property Information</span></th>
+			<tr>				
+				<td>Property Type:</td><td><%= @property.property_type %></td>			
+			</tr>
+			<tr>
+				<td>Bedrooms:</td><td><%= @property.bedrooms%></td>
+			</tr>
+			<tr>
+				<td>Bathrooms:</td><td><%= @property.bathrooms%></td>
+			</tr>
+			<tr>
+				<td>Square Footage:</td><td><%= @property.sqft%></td>
+			</tr>
+			<tr>
+				<td>Lot Size:</td><td><%= @property.lot%></td>
+			</tr>
+			<th><span style="font-weight:bold;">Listing Details</span></th>
+			<tr>
+				<td>Listing Price:</td><td><%= number_to_currency(@property.price, :precision => 0) %></td>
+			</tr>
+			<tr>
+				<td>Status:</td><td><%= @property.status%></td>
+			</tr>
+			<tr>
+				<td>MLS Number:</td><td><%= @property.mls_number%></td>
+			</tr>
+			<tr>
+				<td>Assessed Value:</td><td></td>
+			</tr>
+		</table>
+
+		<% if @admin %>
+		<%= link_to 'Edit', edit_property_path(@property) %> |
+		<%= link_to 'Back', properties_path %>
+		<% end %>
+	</div>
+	
+	<div class="content_narrow property_content_block right_content_block">
+		share this property!
+	</div>
+	<div class="content_narrow property_content_block right_content_block">
+		Contact Nickie!
+	</div>
+
+	<div class="property_photos_block">
+		<% @property.property_photos.where(:order => 0).each do |photo,index| %>
+			<div class="photo_wrapper full_grey_shadow" >
+				<%= image_tag photo.url_url,:width => 548, :class => "content_radius"%>
+			</div>
+		<% end %>
+	
+		<div class="photo_thumbnails_wrapper">
+		<% @property.property_photos.each_with_index do |photo,index| %>
+			<% if photo.order > 0 %>
+			<div class="photo_wrapper">
+				<%= image_tag(photo.url_url(:thumb), :width => 100, :class => "content_radius")%>
+			</div>
+			<% end %>
+		<% end %>
+		</div>
+	</div>
+	
+	<div class="property_description_block content_radius_8">
+		<div class="feature_block_heading"><div style="display:inline-block;width:10px"></div><%= @property.headline %></div>
+		<div class="feature_block_info bottom_eight_radius"><%= @property.description %></div>
+	</div>
+	<div class="property_content_block property_block_left content_radius_8">
+		Leave a Comment
+	</div>
+</div>
+
+
