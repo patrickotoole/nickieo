@@ -14,12 +14,17 @@
 		</div>
 		<%= render :partial => "layouts/signin_menu" %>
 		<div class="header_nav">
-			<div class="nav_button">About</div>
-			<div class="nav_button">Listings</div>
+			<%= link_to '/about', :style => 'text-decoration:none;' do %><div class="nav_button">About</div><% end %>
+			<%= link_to properties_path, :style => 'text-decoration:none;' do %><div class="nav_button">Listings</div><% end %>
 			<div class="nav_button">Search</div>
 			<div class="nav_button">Blog</div>
 			<div class="nav_button">Contact</div>
-			<div class="nav_button">Account</div>
+			<% if user_signed_in? %>
+				<%= link_to user_info_path(current_user_info), :style => 'text-decoration:none;' do %><div class="nav_button">Account</div><% end %>
+			<% else %>
+				<%= link_to new_user_registration_path, :style => 'text-decoration:none;' do %><div class="nav_button">Account</div><% end %>
+			<% end %>
+
 		</div>
 	</div>
 	<div class="inner full_grey_shadow fifteen_radius">

@@ -27,9 +27,9 @@ production:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: nickieotoole_development
+  database: nickieotoole_production
   pool: 5
   username: root
-  password: 
+  password: production-pw
   host: localhost
 

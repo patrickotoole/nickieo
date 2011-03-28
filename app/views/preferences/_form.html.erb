@@ -1,0 +1,54 @@
+<%= form_for @preference do |f| %>
+  <% if @preference.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@preference.errors.count, "error") %> prohibited this property_photo from being saved:</h2>
+
+      <ul>
+      <% @preference.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :min_price %><br />
+    <%= f.text_field :min_price %>
+  </p>
+  <p>
+    <%= f.label :max_price %><br />
+    <%= f.text_field :max_price %>
+  </p>
+  <p>
+    <%= f.label :min_sqft %><br />
+    <%= f.text_field :min_sqft %>
+  </p>
+  <p>
+    <%= f.label :max_sqft %><br />
+    <%= f.text_field :max_sqft %>
+  </p>
+  <p>
+    <%= f.label :min_bedrooms %><br />
+    <%= f.text_field :min_bedrooms %>
+  </p>
+  <p>
+    <%= f.label :max_bedrooms %><br />
+    <%= f.text_field :max_bedrooms %>
+  </p>
+  <p>
+    <%= f.label :min_bathrooms %><br />
+    <%= f.text_field :min_bathrooms %>
+  </p>
+  <p>
+    <%= f.label :max_bathroom %><br />
+    <%= f.text_field :max_bathroom %>
+  </p>
+  <p>
+    <%= f.label :property_type %><br />
+    <%= f.text_field :property_type %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

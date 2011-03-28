@@ -1,13 +1,22 @@
 Trunk::Application.routes.draw do
+  
+  resources :saved_properties
 
-  resources :infos
+  root :to => "infos#index"
+  
   match '/about' => 'infos#about'
-
   match '/auth/:provider/callback' =>'authentications#create'
-  resources :authentications
 
   devise_for :users, :controllers => { :registrations => 'registrations'}
-  root :to => "infos#index"
+
+  devise_for :users, :controllers => { :registrations => "registrations" } do
+    get "users/edit_password", :to => "registrations#edit_password", :as => "edit_password_user_registration"
+    put "users/update", :to => "registrations#update_without_password", :as => "update_user_without_password"    
+  end
+  resources :authentications
+  resources :user_infos, :path => 'account_info'
+  resources :preferences
+  resources :infos
   resources :property_photos
   resources :properties do
     resources :property_photos

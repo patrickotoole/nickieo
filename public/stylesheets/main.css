@@ -27,11 +27,11 @@ span {margin-left:5px;margin-right:5px;}
 
 	/* Outer Header */
 	.header {background-image:url('background-light.png');position:relative;display:block;width:950px;height:115px;margin-left:auto;margin-right:auto;margin-bottom:0px;margin-bottom:0px;}
-	.header_nav {margin-top:10px;margin-right:10px;top:30px;position:relative;vertical-align:top;float:right;clear:right;}
+	.header_nav {text-decoration:none;margin-top:10px;margin-right:10px;top:30px;position:relative;vertical-align:top;float:right;clear:right;}
 	.nav_button {float:left;display:inline-block;font-size:1.3em;margin:5px;padding:10px;font-family:'Myriad Pro';/*border:1px solid grey;*/}
 
 	/* Inner Header */
-	.top_content_header {width:100%;background-color:#fffff0;}
+	.top_content_header {width:100%;background-color:#fffff0;margin-top:10px;}
 	.top_content_header_background {width:100%;height:194px;background-image:url('welcome.png');}
 	
 	/* Inner Content */

@@ -1,0 +1,16 @@
+<% title "Saved Property" %>
+
+<p>
+  <strong>User:</strong>
+  <%= @saved_property.user_id %>
+</p>
+<p>
+  <strong>Property:</strong>
+  <%= @saved_property.property_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_saved_property_path(@saved_property) %> |
+  <%= link_to "Destroy", @saved_property, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", saved_properties_path %>
+</p>

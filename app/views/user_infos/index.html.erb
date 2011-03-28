@@ -1,0 +1,21 @@
+<% title "User Infos" %>
+
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>User</th>
+  </tr>
+  <% for user_info in @user_infos %>
+    <tr>
+      <td><%= user_info.first_name %></td>
+      <td><%= user_info.last_name %></td>
+      <td><%= user_info.user_id %></td>
+      <td><%= link_to "Show", user_info %></td>
+      <td><%= link_to "Edit", edit_user_info_path(user_info) %></td>
+      <td><%= link_to "Destroy", user_info, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New User Info", new_user_info_path %></p>

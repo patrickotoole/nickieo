@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110322184846) do
+ActiveRecord::Schema.define(:version => 20110324031914) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20110322184846) do
     t.string   "property_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "properties", :force => true do |t|
@@ -73,6 +74,23 @@ ActiveRecord::Schema.define(:version => 20110322184846) do
     t.integer  "order"
     t.text     "description"
     t.text     "caption"
+  end
+
+  create_table "saved_properties", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_infos", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "phone"
+    t.string   "type"
   end
 
   create_table "users", :force => true do |t|

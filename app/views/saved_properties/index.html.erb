@@ -1,0 +1,19 @@
+<% title "Saved Properties" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Property</th>
+  </tr>
+  <% for saved_property in @saved_properties %>
+    <tr>
+      <td><%= saved_property.user_id %></td>
+      <td><%= saved_property.property_id %></td>
+      <td><%= link_to "Show", saved_property %></td>
+      <td><%= link_to "Edit", edit_saved_property_path(saved_property) %></td>
+      <td><%= link_to "Destroy", saved_property, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Saved Property", new_saved_property_path %></p>

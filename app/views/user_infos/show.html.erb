@@ -1,0 +1,61 @@
+<% title "User Info" %>
+
+
+<h2>User Information</h2>
+
+
+<p>
+  <strong>First Name</strong>
+  <%= @user_info.first_name %>
+</p>
+<p>
+  <strong>Last Name:</strong>
+  <%= @user_info.last_name %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @user_info.user.email %> 	
+</p>
+<p>
+	<%= render :partial => 'registrations/edit_password', :locals => {:resource => current_user}%>
+  <%= link_to "Change Password", edit_password_user_registration_path %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @user_info.user_id %>
+</p>
+<p>
+  <%= link_to "Edit", edit_user_info_path(@user_info) %> |
+  <%= link_to "Destroy", @user_info, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", user_infos_path %>
+</p>
+
+
+<h2>User Preferences</h2>
+<% for preference in @user_info.preferences %>
+	<%= debug preference %>
+	<%= link_to "Edit #{preference.name} Preferences", edit_preference_path(preference)%>
+<% end %>
+
+<h2>Saved Properties</h2>
+<%= debug @user_info.user.properties %>
+
+<h2>Recently Viewed</h2>
+<div class="property_block padded_block">
+	<% for property in @recent_properties %>
+	<div class="photo_wrapper" style="margin-right:15px;">
+		<div class="photo_overlay_bottom" style="bottom:28px">
+			<div class="photo_overlay_left"><%= property.address %></div>
+			<div class="photo_overlay_right"><%= number_to_currency(property.price, :precision => 0) %></div>
+		</div>
+		<div class="photo_overlay_bottom">
+			<div class="photo_overlay_left">
+				<span></span><%= property.city %>, <%= property.state %>
+			</div>
+		</div>
+		<%= image_tag(property.property_photos.where(:order => 0).first.url_url(:featured), :class => "five_radius") %>
+	</div>
+	<% end %>
+</div>
+
+

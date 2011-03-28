@@ -16,14 +16,24 @@
 <div style="width:695px;display:inline-block;margin-right:10px">
 	<%= render :partial => 'property', :collection => @properties %>
 </div>
-<div class="content_block_border eight_radius padded_block" style="height:200px;width:159px;display:inline-block;vertical-align:top">
-	Recently Viewed:
-	<!--
-	<div class="property_summary_block_heading">
-		<span class="h3"></span>
-	</div>
-	-->
+<div class="content_block_border eight_radius padded_block" style="min-height:200px;width:159px;display:inline-block;vertical-align:top">
+	<h4>Recently Viewed:</h4>
+	
+<% @recent_properties.each_with_index do |property,index| %>
+	<% if index < 4 %>
+	<div class="photo_wrapper" style="margin-top:10px;">
+		<% link_to [property] do %>
+			<%= image_tag(property.property_photos.first.url_url(:thumb), :class => "five_radius", :height => 100) %>
+		<% end %>
+		<div class="photo_overlay_bottom" >
+			<div class="photo_overlay_left" style="font-size:12px"><%= property.address %></div>
+		</div>
+	</div>	
+	<% end %>
+<% end %>
 </div>
+
+
 <% if @admin %>
 <table>
   <tr>

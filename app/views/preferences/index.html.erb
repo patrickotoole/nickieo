@@ -1,0 +1,34 @@
+<% title "Preferences" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Min Price</th>
+    <th>Max Price</th>
+    <th>Min Sqft</th>
+    <th>Max Sqft</th>
+    <th>Min Bedrooms</th>
+    <th>Max Bedrooms</th>
+    <th>Min Bathrooms</th>
+    <th>Max Bathroom</th>
+    <th>Property Type</th>
+  </tr>
+  <% for preference in @preferences %>
+    <tr>
+      <td><%= preference.user_id %></td>
+      <td><%= preference.min_price %></td>
+      <td><%= preference.max_price %></td>
+      <td><%= preference.min_sqft %></td>
+      <td><%= preference.max_sqft %></td>
+      <td><%= preference.min_bedrooms %></td>
+      <td><%= preference.max_bedrooms %></td>
+      <td><%= preference.min_bathrooms %></td>
+      <td><%= preference.max_bathroom %></td>
+      <td><%= preference.property_type %></td>
+      <td><%= link_to "Edit", edit_preference_path(preference) %></td>
+      <td><%= link_to "Destroy", preference, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Preference", new_preference_path %></p>
