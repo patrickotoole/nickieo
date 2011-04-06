@@ -5,10 +5,10 @@ gem 'mysql'
 # gem 'mongrel', '>= 1.2.0.pre2'
 
 gem 'devise'
-gem 'omniauth', :path => "/localgems/omniauth/omniauth"
+gem 'omniauth'#, :path => "/localgems/omniauth/omniauth"
 gem 'cancan'
 
-gem 'geokit', :path => '/localgems/geokit'
+gem 'geokit', :git => 'git://github.com/patrickotoole/geokit-gem.git'
 gem 'geokit-rails3'
 gem 'carrierwave'
 gem 'rmagick'
@@ -20,7 +20,8 @@ gem "nifty-generators", :group => :development
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'rack', '1.2.2'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
