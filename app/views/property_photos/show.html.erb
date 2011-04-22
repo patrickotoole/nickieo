@@ -8,6 +8,10 @@
 <p>
   <b>Url:</b>
   <%= @property_photo.url %>
+  <%= @property_photo.url_url(:thumb) ? image_tag(@property_photo.url_url(:thumb)) : nil%>
+  <%= @property_photo.url_url(:onehundred) ? image_tag(@property_photo.url_url(:onehundred)) : nil%>
+  <%= @property_photo.url_url(:thumb_crop) ? image_tag(@property_photo.url_url(:thumb_crop)) : nil%>
+  <%= @property_photo.url_url(:onehundred_crop) ? image_tag(@property_photo.url_url(:onehundred_crop)) : nil%>
 </p>
 
 

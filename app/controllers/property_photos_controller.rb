@@ -2,7 +2,7 @@ class PropertyPhotosController < ApplicationController
   # GET /property_photos
   # GET /property_photos.xml
   def index
-    @property_photos = PropertyPhoto.where(:property_id => params[:property_id])
+    @property_photos = params[:property_id] ? PropertyPhoto.where(:property_id => params[:property_id]) : PropertyPhoto.all
     @property_id = params[:property_id]
     respond_to do |format|
       format.html # index.html.erb

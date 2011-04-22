@@ -14,6 +14,8 @@ gem 'carrierwave'
 gem 'rmagick'
 gem "nifty-generators", :group => :development
 
+gem 'capistrano'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

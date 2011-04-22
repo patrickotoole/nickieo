@@ -36,6 +36,12 @@ class ImageUploader < CarrierWave::Uploader::Base
     end
   end
   
+  def resize_and_crop_to_square()
+    manipulate! do |img|
+      img = img.resize_to_fill(img.columns,img.columns)
+    end
+  end
+  
   version :dimension do
     process :resize_and_crop
   end
@@ -51,8 +57,22 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
   
   version :thumb do
-    process :resize_and_crop
-    process :resize_to_limit => [50, 50]
+    process :resize_to_limit => [56, 56]
+    process :resize_and_pad => [56,56]
+  end
+  
+  version :onehundred do 
+    process :resize_and_pad => [100, 100]
+  end
+  
+  version :thumb_crop do
+    process :resize_and_crop_to_square
+    process :resize_to_limit => [56, 56]
+  end
+  
+  version :onehundred_crop do 
+    process :resize_and_crop_to_square
+    process :resize_to_limit => [100, 100]
   end
   
   version :web do
